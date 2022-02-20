@@ -1,0 +1,14 @@
+
+.settingItemBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text {
+    color: white;
+}
+
+
+
+

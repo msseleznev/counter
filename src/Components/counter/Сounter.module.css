@@ -1,0 +1,41 @@
+
+
+.display {
+    background: rgba(255, 255, 255, 0.38);
+    border-top: 1px solid rgba(0, 0, 0, 0.83);
+    border-bottom: 1px solid rgba(30, 29, 29, 0.83);
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    line-height: 70px;
+    text-align: center;
+    font-size: calc(20px + 2vmin);
+    color: #ffffff;
+}
+.display_red {
+
+    background: rgba(241, 182, 182, 0.38);
+    border-top: 1px solid rgba(255, 0, 0, 0.83);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.83);
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    line-height: 70px;
+    text-align: center;
+    font-size: calc(20px + 2vmin);
+    color: #ff0101;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.error {
+    font-size: 20px;
+}
+
+
+
