@@ -11,6 +11,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onEnter?: () => void
     error?: boolean
     spanClassName?: string
+
 }
 
 const SuperInputText: React.FC<SuperInputTextPropsType> = (

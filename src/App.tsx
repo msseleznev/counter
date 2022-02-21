@@ -1,73 +1,63 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Counter} from "./Components/counter/Сounter";
 import {Settings} from "./Components/settings/Settings";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./redux/store";
+import {
+    ChangeMaxValueAC,
+    ChangeStartValueAC,
+    IncrementCounterAC,
+    ResetCounterAC,
 
-export type StateType = {
-    counterValue: string
-    startValue: string
-    maxValue: string
+} from "./redux/actions";
+import { savaToLocalStorageTC, setFromLocalStorageTC } from './redux/counter-reducer';
 
-}
 
 export const App = () => {
-    const [state, setState] = useState<StateType>({
-        counterValue: "",
-        startValue: "",
-        maxValue: "",
 
-    })
+    const counterValue = useSelector<AppStateType, string>(state => state.counter.counterValue)
+    const startValue = useSelector<AppStateType, string>(state => state.counter.startValue)
+    const maxValue = useSelector<AppStateType, string>(state => state.counter.maxValue)
+    const dispatch = useDispatch()
     useEffect(() => {
-        let valueStart = localStorage.getItem('startValue')
-        let valueMax = localStorage.getItem('maxValue')
-        if (valueStart && valueMax) {
-            setState({...state, startValue: valueStart, maxValue: valueMax, counterValue: valueStart})
-        }
+        dispatch(setFromLocalStorageTC())
     }, [])
 
-    const setToLocalStorage = () => {
-        localStorage.setItem('startValue', state.startValue)
-        localStorage.setItem('maxValue', state.maxValue)
-    }
-
     const inc = () => {
-        setState({...state, counterValue: (Number(state.counterValue) + 1).toString()});
+        dispatch(IncrementCounterAC())
     };
     //сброс счетчика
     const rec = () => {
-        setState({...state, counterValue: state.startValue});
+        dispatch(ResetCounterAC())
     }
 
-    //меняем стартовое значение
-    const changeStartValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value.replace(/^0+(?!$)/, "").trim()
-        if (!isFinite(+value)) return;
-        setState({...state, startValue: value, counterValue: ''},)
+    // изменение значения инпута по тригеру, с проверкой недопустимого ввода
+    const changeMaxValue = (valueInput: string) => {
+        dispatch(ChangeMaxValueAC(valueInput))
     }
-    //меняем максимальное значение
-    const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value.replace(/^0+(?!$)/, "").trim()
-        if (!isFinite(+value)) return;
-        setState({...state, maxValue: value, counterValue: ''})
+    const changeStartValue = (valueInput: string) => {
+        dispatch(ChangeStartValueAC(valueInput))
     }
 
     //сохранение настроек
     const saveSettings = () => {
-        setState({...state, counterValue: state.startValue})
-        setToLocalStorage()
+        dispatch(savaToLocalStorageTC())
     }
 
     return (
         <div className="App">
             <Settings
-                startValue={state.startValue}
-                maxValue={state.maxValue}
-                counterValue={state.counterValue}
+                startValue={startValue}
+                maxValue={maxValue}
+                counterValue={counterValue}
                 changeMaxValue={changeMaxValue}
                 changeStartValue={changeStartValue}
                 saveSettings={saveSettings}
             />
-            <Counter state={state}
+            <Counter startValue={startValue}
+                     maxValue={maxValue}
+                     counterValue={counterValue}
                      rec={rec}
                      inc={inc}/>
         </div>

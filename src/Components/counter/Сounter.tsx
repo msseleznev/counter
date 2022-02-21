@@ -2,35 +2,39 @@ import React from 'react';
 import container from '../styles/Container.module.css'
 import s from './Сounter.module.css'
 import SuperButton from "../superButton/SuperButton";
-import {StateType} from "../../App";
+
 
 type PropsType = {
     inc: () => void
     rec: () => void
-    state: StateType
+    counterValue: string
+    startValue: string
+    maxValue: string
 }
 
 
-export const Counter: React.FC<PropsType> = (
-    {
+export const Counter: React.FC<PropsType> = props => {
+    const {
         inc,
         rec,
-        state
-    }
-) => {
-    const checkDisableRec = state.counterValue === ""
+        counterValue,
+        startValue,
+        maxValue
+    } = props;
 
-    const checkDisableInc = checkDisableRec || state.counterValue === state.maxValue
+    const checkDisableRec = counterValue === ""
+
+    const checkDisableInc = checkDisableRec || counterValue === maxValue
 
     const finalClassName = checkDisableInc ? s.display_red : s.display
 
-    const errorValue = state.startValue === "" || state.maxValue === ""
+    const errorValue = startValue === "" || maxValue === ""
         ? "Enter start and max values"
-        : +state.startValue >= +state.maxValue
+        : +startValue >= +maxValue
             ? "Incorrect value!"
             : "Press 'set' to save"
 
-    const displayValue = state.counterValue !== '' ? state.counterValue
+    const displayValue = counterValue !== '' ? counterValue
         : (<div className={s.error}> {errorValue} </div>)
 
 
