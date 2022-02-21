@@ -30,17 +30,17 @@ export const counterReducer = (state: InitialStateType = initialState, action: C
 }
 
 // THUNK
-export const savaToLocalStorageTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
-    let startValue = getState().counter.startValue
-    let maxValue = getState().counter.maxValue
-    localStorage.setItem('startValue', startValue)
-    localStorage.setItem('maxValue', maxValue)
-    dispatch(SaveSettingsAC())
-}
-export const setFromLocalStorageTC = () => (dispatch: Dispatch) => {
-    let valueStart = localStorage.getItem('startValue')
-    let valueMax = localStorage.getItem('maxValue')
-    if (valueStart && valueMax) {
-        dispatch(SetFromLocalStorageAC(valueStart, valueMax))
-    }
-}
+// export const savaToLocalStorageTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
+//     let startValue = getState().counter.startValue
+//     let maxValue = getState().counter.maxValue
+//     localStorage.setItem('startValue', startValue)
+//     localStorage.setItem('maxValue', maxValue)
+//     dispatch(SaveSettingsAC())
+// }
+// export const setFromLocalStorageTC = () => (dispatch: Dispatch) => {
+//     let valueStart = localStorage.getItem('startValue')
+//     let valueMax = localStorage.getItem('maxValue')
+//     if (valueStart && valueMax) {
+//         dispatch(SetFromLocalStorageAC(valueStart, valueMax))
+//     }
+// }

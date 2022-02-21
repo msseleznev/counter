@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Counter} from "./Components/counter/Сounter";
-import {Settings} from "./Components/settings/Settings";
+import {Counter} from "./components/counter/Сounter";
+import {Settings} from "./components/settings/Settings";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./redux/store";
 import {
     ChangeMaxValueAC,
     ChangeStartValueAC,
     IncrementCounterAC,
-    ResetCounterAC,
+    ResetCounterAC, SaveSettingsAC,
 
 } from "./redux/actions";
-import { savaToLocalStorageTC, setFromLocalStorageTC } from './redux/counter-reducer';
+
 
 
 export const App = () => {
@@ -21,7 +21,7 @@ export const App = () => {
     const maxValue = useSelector<AppStateType, string>(state => state.counter.maxValue)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(setFromLocalStorageTC())
+        // dispatch(setFromLocalStorageTC())
     }, [])
 
     const inc = () => {
@@ -42,7 +42,7 @@ export const App = () => {
 
     //сохранение настроек
     const saveSettings = () => {
-        dispatch(savaToLocalStorageTC())
+        dispatch(SaveSettingsAC())
     }
 
     return (
