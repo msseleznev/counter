@@ -1,6 +1,5 @@
-import {ACTIONS_TYPE, CounterReducerType, SaveSettingsAC, SetFromLocalStorageAC} from "./actions";
-import {Dispatch} from "redux";
-import {AppStateType} from "./store";
+import {ACTIONS_TYPE, CounterReducerType} from "./actions";
+
 
 const initialState = {
     counterValue: "",
@@ -22,8 +21,11 @@ export const counterReducer = (state: InitialStateType = initialState, action: C
             return {...state, counterValue: state.startValue}
         case ACTIONS_TYPE.SAVE_SETTINGS:
             return {...state, counterValue: state.startValue}
-        case ACTIONS_TYPE.SET_VALUE_FROM_LOCAL_STORAGE:
-            return {...state, startValue: action.startValue, maxValue: action.maxValue, counterValue: action.startValue }
+        // case ACTIONS_TYPE.SET_VALUE_FROM_LOCAL_STORAGE:
+        //     return {...state,
+        //         startValue: action.startValue,
+        //         maxValue: action.maxValue,
+        //         counterValue: action.startValue }
         default:
             return state
     }

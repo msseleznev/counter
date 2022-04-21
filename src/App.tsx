@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from "./components/counter/Сounter";
 import {Settings} from "./components/settings/Settings";
@@ -8,10 +8,9 @@ import {
     ChangeMaxValueAC,
     ChangeStartValueAC,
     IncrementCounterAC,
-    ResetCounterAC, SaveSettingsAC,
-
+    ResetCounterAC,
+    SaveSettingsAC,
 } from "./redux/actions";
-
 
 
 export const App = () => {
@@ -20,9 +19,6 @@ export const App = () => {
     const startValue = useSelector<AppStateType, string>(state => state.counter.startValue)
     const maxValue = useSelector<AppStateType, string>(state => state.counter.maxValue)
     const dispatch = useDispatch()
-    useEffect(() => {
-        // dispatch(setFromLocalStorageTC())
-    }, [])
 
     const inc = () => {
         dispatch(IncrementCounterAC())
@@ -55,11 +51,12 @@ export const App = () => {
                 changeStartValue={changeStartValue}
                 saveSettings={saveSettings}
             />
-            <Counter startValue={startValue}
-                     maxValue={maxValue}
-                     counterValue={counterValue}
-                     rec={rec}
-                     inc={inc}/>
+            <Counter
+                startValue={startValue}
+                maxValue={maxValue}
+                counterValue={counterValue}
+                rec={rec}
+                inc={inc}/>
         </div>
     );
 }

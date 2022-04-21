@@ -70,12 +70,12 @@ export const ChangeMaxValueAC = (valueInput: string): ChangeMaxValueType => {
     }
 }
 
-export const SetFromLocalStorageAC = (startValue: string, maxValue: string): SetFromLocalStorageType => {
-    return {
-        type: ACTIONS_TYPE.SET_VALUE_FROM_LOCAL_STORAGE,
-        startValue: startValue,
-        maxValue: maxValue,
-    }
-}
+// export const SetFromLocalStorageAC = (startValue: string, maxValue: string): SetFromLocalStorageType => {
+//     return {
+//         type: ACTIONS_TYPE.SET_VALUE_FROM_LOCAL_STORAGE,
+//         startValue: startValue,
+//         maxValue: maxValue,
+//     }
+// }
 
 

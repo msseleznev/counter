@@ -31,7 +31,10 @@ export const Settings: React.FC<SettingsPropsType> = props => {
             && counterValue === '')
 
     const valueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const valueInput = e.currentTarget.value.replace(/^0+(?!$)/, "").replace(/\./g, "").trim()
+        const valueInput = e.currentTarget.value
+            .replace(/^0+(?!$)/, "")
+            .replace(/\./g, "")
+            .trim()
         if (!isFinite(+valueInput)) return;
         if (e.currentTarget.dataset.value) {
             const trigger: string = e.currentTarget.dataset.value
